@@ -2,5 +2,5 @@
 *.log
 vendor/
 temp/
-.tags
 *.DS_Store
+composer.lock
