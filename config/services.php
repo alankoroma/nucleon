@@ -16,11 +16,24 @@ return [
         return new Slim\Views\PhpRenderer($c['settings']['views']);
     },
     'db' => function($c) {
-        return new PicoDb\Database($c['settings']['db_attributes']);
+
+        if (DB_DRIVER == 'sqlite') {
+
+            return new PicoDb\Database($c['settings']['db_attributes']);
+
+        } else if (DB_DRIVER == 'mysql') {
+
+            $db_driver = new App\Infrastructure\Database\MySQLDriver(
+                DB_HOST, DB_USER, DB_PASS, DB_NAME
+            );
+
+            return new Infrastructure\Database\MySQLDatabase($db_driver);
+        }
+
     },
     'controller_factory' => function($c) {
         return new App\ControllerFactory(function($controller) use ($c) {
-            $controller->setView($c->view);
+            $controller->setView($c['view']);
         });
     },
 

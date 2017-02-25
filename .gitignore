@@ -1,5 +1,6 @@
 *.txt
 *.log
+*.env
 vendor/
 temp/
 *.DS_Store
