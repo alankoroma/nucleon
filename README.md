@@ -1,2 +1,4 @@
-# framework
-My Custom Framework based off the PHP Slim Framework.
+# Nucleon
+
+
+A Simple light-weight Framework with PHP Unit Test, PHP Unit Database Test, Phinx Database Migration and Authentication.
