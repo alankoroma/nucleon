@@ -2,7 +2,14 @@
 
 abstract class Database_TestCase extends PHPUnit_Extensions_Database_TestCase
 {
+    /**
+     * @var PDO
+     */
     protected static $dbh;
+
+    /**
+     * @var MySQLDriver
+     */
     protected static $db_driver;
 
     public static function setUpBeforeClass()
@@ -21,7 +28,6 @@ abstract class Database_TestCase extends PHPUnit_Extensions_Database_TestCase
 
     final public function getConnection()
     {
-
         return $this->createDefaultDBConnection(self::$dbh, TEST_DB_NAME);
     }
 
