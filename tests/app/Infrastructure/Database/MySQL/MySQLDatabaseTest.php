@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Database;
+namespace App\Infrastructure\Database\MySQL;
 
 use Ramsey\Uuid\Uuid;
-use App\Infrastructure\Database\MySQLDatabase;
+use App\Infrastructure\Database\MySQL\MySQLDatabase;
 
 class MySQLDatabaseTest extends \Database_TestCase
 {

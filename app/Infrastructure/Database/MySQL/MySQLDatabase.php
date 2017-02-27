@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Infrastructure\Database;
+namespace App\Infrastructure\Database\MySQL;
 
+use App\Infrastructure\Database\Database;
 use Simplon\Mysql\Manager\SqlQueryBuilder;
 use Simplon\Mysql\Manager\SqlManager;
 
-class MySQLDatabase
+class MySQLDatabase implements Database
 {
     /**
     * @var MySQLDriver

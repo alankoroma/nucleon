@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Database;
+namespace App\Infrastructure\Database\MySQL;
 
 use Simplon\Mysql\Mysql;
 

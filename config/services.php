@@ -23,7 +23,7 @@ return [
 
         } else if (DB_DRIVER == 'mysql') {
 
-            $db_driver = new App\Infrastructure\Database\MySQLDriver(
+            $db_driver = new App\Infrastructure\Database\MySQL\MySQLDriver(
                 DB_HOST, DB_USER, DB_PASS, DB_NAME
             );
 
