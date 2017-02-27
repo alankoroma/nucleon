@@ -19,7 +19,11 @@ return [
 
         if (DB_DRIVER == 'sqlite') {
 
-            return new PicoDb\Database($c['settings']['db_attributes']);
+            $pico_db = new PicoDb\Database($c['settings']['db_attributes']);
+
+            return new App\Infrastructure\Database\SQLite\SQLiteDatabase(
+                $pico_db
+            );
 
         } else if (DB_DRIVER == 'mysql') {
 

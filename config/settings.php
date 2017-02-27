@@ -5,6 +5,6 @@ return array(
     'views' => __DIR__ . '/../views/',
     'db_attributes' => array(
         'driver' => DB_DRIVER,
-        'filename' => __DIR__ . '/../db/development.db'
+        'filename' => __DIR__ . '/../db/test_nucleon.db'
     )
 );

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Infrastructure\Database\MySQL;
+namespace App\Infrastructure\Database\SQLite;
 
 use Ramsey\Uuid\Uuid;
-use App\Infrastructure\Database\MySQL\MySQLDatabase;
+use App\Infrastructure\Database\SQLite\SQLiteDatabase;
 
-class MySQLDatabaseTest extends \MySQL_TestCase
+class SQLiteDatabaseTest extends \MySQLite_TestCase
 {
     public function getDataSet()
     {
@@ -14,7 +14,7 @@ class MySQLDatabaseTest extends \MySQL_TestCase
 
     public function setUp()
     {
-        $this->db = new MySQLDatabase(self::$db_driver);
+        $this->db = new SQLiteDatabase(self::$db_driver);
 
         parent::setUp();
     }

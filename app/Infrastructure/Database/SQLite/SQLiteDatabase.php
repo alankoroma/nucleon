@@ -1,26 +1,25 @@
 <?php
 
-namespace App\Infrastructure\Database\MySQL;
+namespace App\Infrastructure\Database\SQLite;
 
 use App\Infrastructure\Database\DatabaseInterface;
-use Simplon\Mysql\Manager\SqlQueryBuilder;
-use Simplon\Mysql\Manager\SqlManager;
+use PicoDb\Database;
 
-class MySQLDatabase implements DatabaseInterface
+class SQLiteDatabase implements DatabaseInterface
 {
     /**
-    * @var MySQLDriver
+    * @var SQLite
     */
-    protected $dbDriver;
+    protected $db;
 
     /**
     * Construct a new data access abstraction layer
     *
     * @param MySQLDriver $db_driver
     */
-    function __construct(MySQLDriver $db_driver)
+    function __construct(Database $db)
     {
-        $this->dbDriver = $db_driver;
+        $this->db = $db;
     }
 
     /**
@@ -30,7 +29,7 @@ class MySQLDatabase implements DatabaseInterface
      */
     public function getLastQuery()
     {
-        return $this->dbDriver->lastQuery();
+        return $this->db->getStatementHandler()->withLogging();
     }
 
     /**
@@ -42,14 +41,7 @@ class MySQLDatabase implements DatabaseInterface
     */
     public function insert($table, $record)
     {
-        $sql_builder = new SqlQueryBuilder();
-        $sql_builder->setTableName($table)->setData($record);
-
-        $sql_manager = new SqlManager($this->dbDriver);
-
-        $response = $sql_manager->insert($sql_builder);
-
-        return $response;
+        $this->db->table($table)->insert($record);
     }
 
     /**
@@ -61,14 +53,7 @@ class MySQLDatabase implements DatabaseInterface
     */
     public function insertAll($table, $records)
     {
-        $sql_builder = new SqlQueryBuilder();
-        $sql_builder->setTableName($table)->setData($records);
 
-        $sql_manager = new SqlManager($this->dbDriver);
-
-        $response = $sql_manager->insert($sql_builder);
-
-        return $response;
     }
 
     /**
@@ -82,16 +67,7 @@ class MySQLDatabase implements DatabaseInterface
     */
     public function update($table, $conds, $record)
     {
-        $sql_builder = new SqlQueryBuilder();
-        $sql_builder->setTableName($table)
-            ->setConditions($conds)
-            ->setData($record);
 
-        $sql_manager = new SqlManager($this->dbDriver);
-
-        $response = $sql_manager->update($sql_builder);
-
-        return $response;
     }
 
     /**
@@ -102,14 +78,7 @@ class MySQLDatabase implements DatabaseInterface
     */
     public function query($query)
     {
-        $sql_builder = new SqlQueryBuilder();
-        $sql_builder->setQuery($query);
 
-        $sql_manager = new SqlManager($this->dbDriver);
-
-        $response = $sql_manager->executeSql($sql_builder);
-
-        return $response;
     }
 
     /**
@@ -121,14 +90,7 @@ class MySQLDatabase implements DatabaseInterface
     */
     public function queryFirst($query, $conds = array())
     {
-        $sql_builder = new SqlQueryBuilder();
-        $sql_builder->setQuery($query)->setConditions($conds);
 
-        $sql_manager = new SqlManager($this->dbDriver);
-
-        $result = $sql_manager->fetchRow($sql_builder);
-
-        return $result;
     }
 
     /**
@@ -140,14 +102,7 @@ class MySQLDatabase implements DatabaseInterface
     */
     public function queryAll($query, $conds = array())
     {
-        $sql_builder = new SqlQueryBuilder();
-        $sql_builder->setQuery($query)->setConditions($conds);
 
-        $sql_manager = new SqlManager($this->dbDriver);
-
-        $results = $sql_manager->fetchRowMany($sql_builder);
-
-        return $results;
     }
 
     /**
@@ -160,13 +115,6 @@ class MySQLDatabase implements DatabaseInterface
     */
     public function delete($table, $conds)
     {
-        $sql_builder = new SqlQueryBuilder();
-        $sql_builder->setTableName($table)->setConditions($conds);
 
-        $sql_manager = new SqlManager($this->dbDriver);
-
-        $response = $sql_manager->delete($sql_builder);
-
-        return $response;
     }
 }

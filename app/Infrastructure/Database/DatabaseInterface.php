@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Database;
 
-interface Database
+interface DatabaseInterface
 {
     public function insert($table, $record);
     public function update($table, $conds, $record);
