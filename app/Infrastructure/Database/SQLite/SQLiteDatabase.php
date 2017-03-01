@@ -53,7 +53,9 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function insertAll($table, $records)
     {
-
+        foreach ($records as $record) {
+            $this->db->table($table)->save($record);
+        }
     }
 
     /**
@@ -67,7 +69,7 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function update($table, $conds, $record)
     {
-
+        $this->db->table($table)->eq(key($conds), $conds[$key])->save($record);
     }
 
     /**
@@ -78,7 +80,7 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function query($query)
     {
-
+        $this->db->execute($query);
     }
 
     /**
@@ -90,7 +92,7 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function queryFirst($query, $conds = array())
     {
-
+        return $this->db->execute($query, $conds)->fetchColumn();
     }
 
     /**
@@ -100,9 +102,10 @@ class SQLiteDatabase implements DatabaseInterface
     * @param array $conds Named query parameters
     * @return array()
     */
-    public function queryAll($query, $conds = array())
+    public function queryAll($table, $conds = array())
     {
-
+        $results = $this->db->table('authors');
+        var_dump($conds); exit;
     }
 
     /**

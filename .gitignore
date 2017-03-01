@@ -2,6 +2,6 @@
 *.log
 *.env
 vendor/
-*.db
+*.sqlite
 *.DS_Store
 composer.lock

@@ -3,9 +3,8 @@
 namespace App\Infrastructure\Database\SQLite;
 
 use Ramsey\Uuid\Uuid;
-use App\Infrastructure\Database\SQLite\SQLiteDatabase;
 
-class SQLiteDatabaseTest extends \MySQLite_TestCase
+class SQLiteDatabaseTest extends \Database_TestCase
 {
     public function getDataSet()
     {
@@ -14,8 +13,8 @@ class SQLiteDatabaseTest extends \MySQLite_TestCase
 
     public function setUp()
     {
-        $this->db = new SQLiteDatabase(self::$db_driver);
-
+        $this->db = self::$db;
+        $this::cleanUp('authors');
         parent::setUp();
     }
 
@@ -121,7 +120,7 @@ class SQLiteDatabaseTest extends \MySQLite_TestCase
             "Pre-Condition"
         );
 
-        $query = 'TRUNCATE authors';
+        $query = 'DELETE FROM authors';
         $this->db->query($query);
 
         $this->assertEquals(0,
@@ -146,7 +145,7 @@ class SQLiteDatabaseTest extends \MySQLite_TestCase
             )
         );
 
-        $this->assertEquals('04acc367-33f7-11e5-a6b3-000c29d6482a', $data['id']);
+        $this->assertEquals('04acc367-33f7-11e5-a6b3-000c29d6482a', $data);
     }
 
     /**
@@ -159,18 +158,14 @@ class SQLiteDatabaseTest extends \MySQLite_TestCase
             "Pre-Condition"
         );
 
-        $author_name = 'Rowlings';
+        $conditions = array('author_first_name' => 'Rowlings');
 
-        $authors = $this->db->queryAll('
-            SELECT *
-            FROM authors
-            WHERE deleted = 0 AND
-            author_name = :author_name',
-            array(
-                ':author_name' => $author_name
-            )
-        );
+        $author_first_name = 'Rowlings';
 
+        $authors = $this->db->queryAll('authors', $conditions);
+
+
+        var_dump($authors); exit;
         $authors_array = array();
         foreach ($authors as $author) {
             $authors_array[$author['id']] = $author;
@@ -181,28 +176,28 @@ class SQLiteDatabaseTest extends \MySQLite_TestCase
         $this->assertArrayNotHasKey('3f4f593e-a94e-102d-a80b-182573d3c666', $authors_array);
     }
 
-    /**
-     * Test Database Delete
-     */
-    public function testDelete()
-    {
-        $id = '04acc367-33f7-11e5-a6b3-000c29d6482a';
-
-        $this->assertEquals(3,
-            $this->getConnection()->getRowCount('authors'),
-            "Pre-Condition"
-        );
-
-        $this->db->delete(
-            'authors',
-            array(
-                'id' => $id
-            )
-        );
-
-        $this->assertEquals(2,
-            $this->getConnection()->getRowCount('authors'),
-            "Inserting failed"
-        );
-    }
+    // /**
+    //  * Test Database Delete
+    //  */
+    // public function testDelete()
+    // {
+    //     $id = '04acc367-33f7-11e5-a6b3-000c29d6482a';
+    //
+    //     $this->assertEquals(3,
+    //         $this->getConnection()->getRowCount('authors'),
+    //         "Pre-Condition"
+    //     );
+    //
+    //     $this->db->delete(
+    //         'authors',
+    //         array(
+    //             'id' => $id
+    //         )
+    //     );
+    //
+    //     $this->assertEquals(2,
+    //         $this->getConnection()->getRowCount('authors'),
+    //         "Inserting failed"
+    //     );
+    // }
 }

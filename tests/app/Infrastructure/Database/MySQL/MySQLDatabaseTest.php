@@ -5,7 +5,7 @@ namespace App\Infrastructure\Database\MySQL;
 use Ramsey\Uuid\Uuid;
 use App\Infrastructure\Database\MySQL\MySQLDatabase;
 
-class MySQLDatabaseTest extends \MySQL_TestCase
+class MySQLDatabaseTest extends \Database_TestCase
 {
     public function getDataSet()
     {
@@ -14,8 +14,8 @@ class MySQLDatabaseTest extends \MySQL_TestCase
 
     public function setUp()
     {
-        $this->db = new MySQLDatabase(self::$db_driver);
-
+        $this->db = self::$db;
+        $this::cleanUp('authors');
         parent::setUp();
     }
 
@@ -159,15 +159,15 @@ class MySQLDatabaseTest extends \MySQL_TestCase
             "Pre-Condition"
         );
 
-        $author_name = 'Rowlings';
+        $author_first_name = 'Rowlings';
 
         $authors = $this->db->queryAll('
             SELECT *
             FROM authors
             WHERE deleted = 0 AND
-            author_name = :author_name',
+            author_first_name = :author_first_name',
             array(
-                ':author_name' => $author_name
+                ':author_first_name' => $author_first_name
             )
         );
 

@@ -16,8 +16,7 @@ if (getenv('TIME_ZONE') == null) {
     date_default_timezone_set(TIME_ZONE);
 }
 
-require (dirname(__FILE__). '/MySQL_TestCase.php');
-require (dirname(__FILE__). '/MySQLite_TestCase.php');
+require (dirname(__FILE__). '/Database_TestCase.php');
 
 /* Database Drivers */
 $dotenv->required('DB_DRIVER')->allowedValues(['sqlite', 'mysql']);

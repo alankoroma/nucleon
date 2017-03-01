@@ -2,7 +2,7 @@
 <dataset>
     <table name="authors">
         <column>id</column>
-        <column>author_name</column>
+        <column>author_first_name</column>
         <row>
             <value>04acc367-33f7-11e5-a6b3-000c29d6482a</value>
             <value>Rowlings</value>

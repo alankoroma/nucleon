@@ -5,7 +5,7 @@ paths:
 environments:
     default_migration_table: phinxlog
     default_database: development_mysql
-    production__mysql:
+    production_mysql:
         adapter: mysql
         host: localhost
         name: test_nucleon
@@ -23,7 +23,7 @@ environments:
         port: 3306
         charset: utf8
 
-    testing__mysql:
+    testing_mysql:
         adapter: mysql
         host: localhost
         name: test_nucleon
@@ -32,14 +32,14 @@ environments:
         port: 3306
         charset: utf8
 
-    production__sqlite:
+    production_sqlite:
         adapter: sqlite
-        name: %%PHINX_CONFIG_DIR%%/db/test_nucleon.db
+        name: %%PHINX_CONFIG_DIR%%/db/test_nucleon.sqlite
 
     development_sqlite:
         adapter: sqlite
-        name: %%PHINX_CONFIG_DIR%%/db/test_nucleon.db
+        name: %%PHINX_CONFIG_DIR%%/db/test_nucleon.sqlite
 
     testing_sqlite:
         adapter: sqlite
-        name: %%PHINX_CONFIG_DIR%%/tests/db/test_nucleon.db
+        name: %%PHINX_CONFIG_DIR%%/tests/db/test_nucleon.sqlite
