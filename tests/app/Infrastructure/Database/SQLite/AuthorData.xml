@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="authors">
+        <column>id</column>
+        <column>author_first_name</column>
+        <row>
+            <value>04acc367-33f7-11e5-a6b3-000c29d6482a</value>
+            <value>Rowlings</value>
+        </row>
+        <row>
+            <value>3f4f593e-a94e-102d-a80b-182573d3c666</value>
+            <value>Dag Heward Mills</value>
+        </row>
+        <row>
+            <value>f21e5998-b983-11e6-928f-3e0662d818ed</value>
+            <value>Rowlings</value>
+        </row>
+    </table>
+</dataset>

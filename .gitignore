@@ -1,6 +1,7 @@
 *.txt
 *.log
+*.env
 vendor/
-temp/
+*.sqlite
 *.DS_Store
 composer.lock
