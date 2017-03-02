@@ -15,7 +15,7 @@ class Authors extends AbstractMigration
             ->addColumn('author_first_name', 'string', array('length'=>30,'default'=>''))
             ->addColumn('author_last_name', 'string', array('length'=>30,'default'=>''))
             ->addColumn('author_picture', 'string', array('length'=>50))
-            ->addColumn('deleted', 'datetime', array('default'=>'0000-00-00 00:00:00'))
+            ->addColumn('deleted', 'datetime', array('default'=>null))
             ->create();
     }
 }

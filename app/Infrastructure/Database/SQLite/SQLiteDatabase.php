@@ -4,6 +4,7 @@ namespace App\Infrastructure\Database\SQLite;
 
 use App\Infrastructure\Database\DatabaseInterface;
 use PicoDb\Database;
+use PDO;
 
 class SQLiteDatabase implements DatabaseInterface
 {
@@ -41,7 +42,7 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function insert($table, $record)
     {
-        $this->db->table($table)->insert($record);
+        return $this->db->table($table)->insert($record);
     }
 
     /**
@@ -53,9 +54,12 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function insertAll($table, $records)
     {
+        $results = [];
         foreach ($records as $record) {
-            $this->db->table($table)->save($record);
+            $results[] = $this->db->table($table)->save($record);
         }
+
+        return $results;
     }
 
     /**
@@ -69,7 +73,8 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function update($table, $conds, $record)
     {
-        $this->db->table($table)->eq(key($conds), $conds[$key])->save($record);
+        $key = key($conds);
+        return $this->db->table($table)->eq(key($conds), $conds[$key])->save($record);
     }
 
     /**
@@ -80,7 +85,8 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function query($query)
     {
-        $this->db->execute($query);
+        $results = $this->db->execute($query)->fetchAll(PDO::FETCH_ASSOC);
+        return $results;
     }
 
     /**
@@ -90,9 +96,16 @@ class SQLiteDatabase implements DatabaseInterface
     * @param array $conds Named query parameters
     * @return array()
     */
-    public function queryFirst($query, $conds = array())
+    public function queryFirst($query, $data = array())
     {
-        return $this->db->execute($query, $conds)->fetchColumn();
+        $columns = array_keys($data);
+        $query_string = str_replace($columns, '?', $query);
+
+        $results = $this->db
+                        ->execute($query_string, $data)
+                        ->fetch(PDO::FETCH_ASSOC);
+
+        return $results;
     }
 
     /**
@@ -102,10 +115,17 @@ class SQLiteDatabase implements DatabaseInterface
     * @param array $conds Named query parameters
     * @return array()
     */
-    public function queryAll($table, $conds = array())
+    public function queryAll($query, $data = array())
     {
-        $results = $this->db->table('authors');
-        var_dump($conds); exit;
+
+        $columns = array_keys($data);
+        $query_string = str_replace($columns, '?', $query);
+
+        $results = $this->db
+                        ->execute($query_string, $data)
+                        ->fetchAll(PDO::FETCH_ASSOC);
+
+        return $results;
     }
 
     /**
@@ -118,6 +138,7 @@ class SQLiteDatabase implements DatabaseInterface
     */
     public function delete($table, $conds)
     {
-
+        $key = key($conds);
+        return $this->db->table($table)->eq(key($conds), $conds[$key])->remove();
     }
 }

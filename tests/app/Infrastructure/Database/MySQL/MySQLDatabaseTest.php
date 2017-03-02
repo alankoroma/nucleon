@@ -92,12 +92,7 @@ class MySQLDatabaseTest extends \Database_TestCase
 
         $id = '04acc367-33f7-11e5-a6b3-000c29d6482a';
 
-        $this->assertEquals(3,
-            $this->getConnection()->getRowCount('authors'),
-            "Pre-Condition"
-        );
-
-        $this->db->update(
+        $result = $this->db->update(
             'authors',
             array(
                 'id' => $id
@@ -105,10 +100,7 @@ class MySQLDatabaseTest extends \Database_TestCase
             $data
         );
 
-        $this->assertEquals(3,
-            $this->getConnection()->getRowCount('authors'),
-            "Inserting failed"
-        );
+        $this->assertEquals(true, $result);
     }
 
     /**
@@ -164,7 +156,7 @@ class MySQLDatabaseTest extends \Database_TestCase
         $authors = $this->db->queryAll('
             SELECT *
             FROM authors
-            WHERE deleted = 0 AND
+            WHERE deleted IS NULL AND
             author_first_name = :author_first_name',
             array(
                 ':author_first_name' => $author_first_name
