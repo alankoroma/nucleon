@@ -2,6 +2,7 @@
 
 use App\Infrastructure\Database\MySQL\MySQLDatabase;
 use App\Infrastructure\Database\SQLite\SQLiteDatabase;
+use App\Infrastructure\Database\DatabaseDriver;
 
 abstract class Database_TestCase extends PHPUnit_Extensions_Database_TestCase
 {
@@ -22,40 +23,49 @@ abstract class Database_TestCase extends PHPUnit_Extensions_Database_TestCase
 
     public static function setUpBeforeClass()
     {
-        if (DB_DRIVER == 'mysql') {
-
-            self::$pdo = new PDO(TEST_DB_DSN, TEST_DB_USER, TEST_DB_PASS);
-
-            self::$db_driver = new App\Infrastructure\Database\MySQL\MySQLDriver(
-                TEST_DB_HOST, TEST_DB_USER, TEST_DB_PASS, TEST_DB_NAME
-            );
-
-            self::$db = new MySQLDatabase(self::$db_driver);
-        }
+        $database_driver = new DatabaseDriver();
+        $database_driver->setDriver(DB_DRIVER);
 
         if (DB_DRIVER == 'sqlite') {
 
-            $db_attributes = array(
+            $db_settings = array(
                 'driver' => DB_DRIVER,
                 'filename' => __DIR__ . '/../tests/db/test_nucleon.sqlite'
             );
 
-            self::$pdo = new PDO('sqlite:' . $db_attributes['filename'] . '');
+            self::$pdo = new PDO('sqlite:' . $db_settings['filename'] . '');
 
-            self::$db_driver = new PicoDb\Database($db_attributes);
+            $database_driver->settings($db_settings);
 
-            self::$db =new SQLiteDatabase(self::$db_driver);
+            self::$db = $database_driver;
+
+        } else if (DB_DRIVER == 'mysql') {
+
+            self::$pdo = new PDO(TEST_DB_DSN, TEST_DB_USER, TEST_DB_PASS);
+
+            $db_settings = array(
+                'host' => TEST_DB_HOST,
+                'user' => TEST_DB_USER,
+                'password' => TEST_DB_PASS,
+                'db_name' => TEST_DB_NAME
+            );
+
+            $database_driver->settings($db_settings);
+
+            self::$db = $database_driver;
         }
     }
 
     public static function cleanUp($table_name)
     {
+        $database = self::$db->getDatabase();
+
         if (DB_DRIVER == 'mysql') {
-            self::$db->query('TRUNCATE ' . $table_name);
+            $database->query('TRUNCATE ' . $table_name);
         }
 
         if (DB_DRIVER == 'sqlite') {
-            self::$db->query('DELETE FROM ' . $table_name);
+            $database->query('DELETE FROM ' . $table_name);
         }
     }
 

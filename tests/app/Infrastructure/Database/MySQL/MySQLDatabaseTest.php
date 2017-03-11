@@ -14,7 +14,7 @@ class MySQLDatabaseTest extends \Database_TestCase
 
     public function setUp()
     {
-        $this->db = self::$db;
+        $this->db = self::$db->getDatabase();
         $this::cleanUp('authors');
         parent::setUp();
     }

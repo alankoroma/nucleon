@@ -7,7 +7,7 @@ use App\Domain\User\UserId;
 use App\Domain\User\UserPassword;
 use App\Domain\User\UserRepository;
 use App\Domain\EmailAddress;
-use App\Infrastructure\Database\MySQL\MySQLDatabase;
+use App\Infrastructure\Database\DatabaseDriver;
 use DateTime;
 
 class UserRepositoryTest extends \Database_TestCase

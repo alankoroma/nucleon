@@ -17,21 +17,23 @@ return [
     },
     'db' => function($c) {
 
+        $db_driver = new DatabaseDriver();
+        $db_driver->setDriver(DB_DRIVER);
+
         if (DB_DRIVER == 'sqlite') {
 
-            $pico_db = new PicoDb\Database($c['settings']['db_attributes']);
-
-            return new App\Infrastructure\Database\SQLite\SQLiteDatabase(
-                $pico_db
-            );
+            $db_driver->settings($c['settings']['db_attributes']);
 
         } else if (DB_DRIVER == 'mysql') {
 
-            $db_driver = new App\Infrastructure\Database\MySQL\MySQLDriver(
-                DB_HOST, DB_USER, DB_PASS, DB_NAME
+            $db_settings = array(
+                'host' => DB_HOST,
+                'user' => DB_USER,
+                'password' => DB_PASS,
+                'db_name' => DB_NAME
             );
 
-            return new Infrastructure\Database\MySQLDatabase($db_driver);
+            $db_driver->settings($db_settings);
         }
 
     },

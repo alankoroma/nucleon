@@ -13,7 +13,7 @@ class SQLiteDatabaseTest extends \Database_TestCase
 
     public function setUp()
     {
-        $this->db = self::$db;
+        $this->db = self::$db->getDatabase();
         $this::cleanUp('authors');
         parent::setUp();
     }
@@ -166,8 +166,6 @@ class SQLiteDatabaseTest extends \Database_TestCase
         foreach ($authors as $author) {
             $authors_array[$author['id']] = $author;
         }
-
-
 
         $this->assertArrayHasKey('04acc367-33f7-11e5-a6b3-000c29d6482a', $authors_array);
         $this->assertArrayHasKey('f21e5998-b983-11e6-928f-3e0662d818ed', $authors_array);

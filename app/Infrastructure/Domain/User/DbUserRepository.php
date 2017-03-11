@@ -7,7 +7,7 @@ use App\Domain\User\UserId;
 use App\Domain\User\User;
 use App\Domain\User\UserPassword;
 use App\Domain\User\UserRepository;
-use App\Infrastructure\Database\MySQL\MySQLDatabase;
+use App\Infrastructure\Database\DatabaseDriver;
 
 class DbUserRepository implements UserRepository
 {
@@ -19,11 +19,11 @@ class DbUserRepository implements UserRepository
     /**
     * Creates a new User repository Constructor
     *
-    * @param MySQLDatabase $db
+    * @param DatabaseDriver $db
     */
-    function __construct(MySQLDatabase $db)
+    function __construct(DatabaseDriver $db)
     {
-        $this->db = $db;
+        $this->db = $db->getDatabase();
     }
 
     /**
@@ -120,6 +120,7 @@ class DbUserRepository implements UserRepository
 
         if ($original) {
             $arr['modified_user_id'] = '0000';
+            $arr['date_modified'] = gmdate('Y-m-d H:i:s');
             $this->db->update(
                 'users',
                 array(
@@ -130,6 +131,7 @@ class DbUserRepository implements UserRepository
         } else {
 
             $arr['created_by'] = '0000';
+            $arr['date_entered'] = gmdate('Y-m-d H:i:s');
             $this->db->insert('users', $arr);
         }
     }
