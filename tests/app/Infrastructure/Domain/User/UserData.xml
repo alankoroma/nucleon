@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="users">
+        <column>id</column>
+        <column>admin</column>
+        <column>username</column>
+        <column>user_password</column>
+        <column>user_firstname</column>
+        <column>user_lastname</column>
+        <column>user_email</column>
+        <column>user_phone</column>
+        <column>user_picture</column>
+        <column>last_login</column>
+        <row>
+            <value>5aef6312-b908-11e6-8ea1-23d4bf410863</value>
+            <value>y</value>
+            <value>johndoe@email.com</value>
+            <value>$2y$10$PavVsVl15.DSP5mzFVp6VeULNOs0c/ajTEY/cta0b9AR9I/6RNYwO</value>
+            <value>John</value>
+            <value>Smith</value>
+            <value>johndoe@email.com</value>
+            <value>0412345678</value>
+            <value>image.png</value>
+            <value>0000-00-00 00:00:00</value>
+        </row>
+        <row>
+            <value>309ef471-c881-11e4-9008-080027168b74</value>
+            <value>n</value>
+            <value>sarahsmith@email.com</value>
+            <value>$2y$10$PavVsVl15.DSP5mzFVp6VeULNOs0c/ajTEY/cta0b9AR9I/6RNYwO</value>
+            <value>Sarah</value>
+            <value>Smith</value>
+            <value>sarahsmith@email.com</value>
+            <value>0412345123</value>
+            <value>sarah.png</value>
+            <value>0000-00-00 00:00:00</value>
+        </row>
+        <row>
+            <value>8cc14a3c-d11c-11e5-8d27-000c294b6959</value>
+            <value>n</value>
+            <value>email@email.com</value>
+            <value>$2y$10$PmoTAYA./UpUbFFukzNi7eNUueryvSD0krMELAbqAjc.w4MnIo7mO</value>
+            <value>John01</value>
+            <value>Doe</value>
+            <value>email@email.com</value>
+            <value>0434345123</value>
+            <value>anotherimage.png</value>
+            <value>0000-00-00 00:00:00</value>
+        </row>
+        <row>
+            <value>7309fa6e-b933-102d-b091-39314defc615</value>
+            <value>y</value>
+            <value>jane@email.com</value>
+            <value>$2y$10$PavVsVl15.DSP5mzFVp6VeULNOs0c/ajTEY/cta0b9AR9I/6RNYwO</value>
+            <value>Jane</value>
+            <value>Doe</value>
+            <value>jane@email.com</value>
+            <value>0490345123</value>
+            <value>someimage.png</value>
+            <value>0000-00-00 00:00:00</value>
+        </row>
+    </table>
+</dataset>

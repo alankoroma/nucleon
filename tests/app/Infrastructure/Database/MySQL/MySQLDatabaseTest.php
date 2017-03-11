@@ -113,7 +113,7 @@ class MySQLDatabaseTest extends \Database_TestCase
             "Pre-Condition"
         );
 
-        $query = 'TRUNCATE authors';
+        $query = 'DELETE FROM authors';
         $this->db->query($query);
 
         $this->assertEquals(0,
