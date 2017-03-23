@@ -7,7 +7,7 @@ use Slim\Views\Twig;
 class WebController extends BaseController
 {
     /**
-     * @var PhpRenderer
+     * @var Twig
      */
     private $view;
 

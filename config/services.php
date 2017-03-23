@@ -80,7 +80,7 @@ return [
 
     /* Error Controller/Handlers */
    'notFoundHandler' => function($c) {
-       return $c->controller_factory->create(
+       return $c['controller_factory']->create(
            Controller\ErrorController::class,
            404,
            $c['debug_mode']
@@ -92,13 +92,5 @@ return [
            500,
            $c['debug_mode']
        );
-   },
-
-    /* Index Controller */
-    'index_controller' => function($c) {
-        $controller = $c->controller_factory->create(
-            Controller\IndexController::class
-        );
-        return $controller;
-    }
+   }
 ];

@@ -64,7 +64,7 @@ class UpdateUserController extends WebController
                 ));
 
             } catch (DoesNotExistException $e) {
-                return $this->redirect(SITE_PATH . '/actors');
+                return $this->redirect(SITE_PATH . '/');
             }
 
         } else {
@@ -85,8 +85,6 @@ class UpdateUserController extends WebController
             if (!$this->form->validate($body)) {
                 throw new \Exception();
             }
-
-            var_dump($body); exit;
 
             $this->form->setCommandClass(UpdateUserCommand::class);
             $command = $this->form->getTransfer();

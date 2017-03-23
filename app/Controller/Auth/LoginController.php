@@ -38,7 +38,7 @@ class LoginController extends WebController
 
         if ($user) {
 
-            return $this->redirect(SITE_PATH . '/actors');
+            return $this->redirect(SITE_PATH . '/dashboard');
         }
 
         $this->render('auth/login.html.twig');
@@ -66,7 +66,7 @@ class LoginController extends WebController
             return $this
                 ->response
                 ->withStatus(302)
-                ->withHeader('Location', '../framework/actors');
+                ->withHeader('Location', 'dashboard');
 
         } catch (IncorrectCredentialsException $e) {
 

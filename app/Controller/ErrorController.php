@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Controller\BaseController;
-
 class ErrorController extends WebController
 {
     /**
@@ -44,8 +42,8 @@ class ErrorController extends WebController
                 $error_name = 'Page Could Not Be Found';
                 $error_message = 'This page does not exist.';
             }
-            
-            return $this->render('error.php', array(
+
+            return $this->render('error.html.twig', array(
                 'status_code' => $this->status,
                 'error_name' => $error_name,
                 'error_message' => $error_message

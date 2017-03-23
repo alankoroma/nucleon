@@ -35,7 +35,6 @@ if (getenv('TIME_ZONE') == null) {
     date_default_timezone_set(TIME_ZONE);
 }
 
-
 /* Database Drivers */
 $dotenv->required('DB_DRIVER')->allowedValues(['sqlite', 'mysql']);
 define('DB_DRIVER', getenv('DB_DRIVER'));
@@ -57,6 +56,7 @@ if (DEBUG_MODE) {
   $container_config = array_merge(
       require(__DIR__  . '/config/services.php'),
       require(__DIR__  . '/config/Application/Auth.php'),
+      require(__DIR__  . '/config/Application/Dashboard.php'),
       require(__DIR__  . '/config/Application/User.php')
   );
 
@@ -68,6 +68,7 @@ if (DEBUG_MODE) {
     $container_config = array_merge(
         require(__DIR__  . '/config/services.php'),
         require(__DIR__  . '/config/Application/Auth.php'),
+        require(__DIR__  . '/config/Application/Dashboard.php'),
         require(__DIR__  . '/config/Application/User.php')
     );
 }
