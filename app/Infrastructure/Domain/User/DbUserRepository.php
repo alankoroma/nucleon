@@ -12,7 +12,7 @@ use App\Infrastructure\Database\DatabaseDriver;
 class DbUserRepository implements UserRepository
 {
     /**
-    * @var MySQLDatabase
+    * @var DatabaseDriver
     */
     private $db;
 
