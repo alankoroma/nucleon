@@ -53,5 +53,4 @@ class SessionRepositoryTest extends \Database_TestCase
 
         $this->assertEmpty($session->data());
     }
-
 }
