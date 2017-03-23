@@ -3,9 +3,9 @@
 namespace App\Application\User\RegisterUser;
 
 use App\Domain\EmailAddress;
-use App\Domain\Users\User;
-use App\Domain\Users\UserPassword;
-use App\Domain\Users\UserRepository;
+use App\Domain\User\User;
+use App\Domain\User\UserPassword;
+use App\Domain\User\UserRepository;
 
 class RegisterUser
 {
@@ -15,8 +15,7 @@ class RegisterUser
     private $userRepository;
 
     /**
-     * Creates a new service.
-     *
+     * RegisterUser Constructor.
      * @param UserRepository $repository
      */
     function __construct(UserRepository $repository)
@@ -29,7 +28,6 @@ class RegisterUser
      *
      * @param  RegisterUserCommand $command
      * @throws UserExistsException when email in use
-     * @return null
      */
     public function execute(RegisterUserCommand $command)
     {

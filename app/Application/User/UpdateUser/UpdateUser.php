@@ -3,10 +3,10 @@
 namespace App\Application\User\UpdateUser;
 
 use App\Domain\EmailAddress;
-use App\Domain\Users\User;
-use App\Domain\Users\UserId;
-use App\Domain\Users\UserPassword;
-use App\Domain\Users\UserRepository;
+use App\Domain\User\User;
+use App\Domain\User\UserId;
+use App\Domain\User\UserPassword;
+use App\Domain\User\UserRepository;
 use App\Application\DoesNotExistException;
 
 class UpdateUser
@@ -17,8 +17,7 @@ class UpdateUser
     private $userRepository;
 
     /**
-     * Creates a new service.
-     *
+     * UpdateUser Constructor.
      * @param UserRepository $repository
      */
     function __construct(UserRepository $repository)
@@ -26,6 +25,10 @@ class UpdateUser
         $this->userRepository = $repository;
     }
 
+    /**
+     * Execute An Update On A User
+     * @param  UpdateUserCommand $command
+     */
     public function execute(UpdateUserCommand $command)
     {
         $user = $this->userRepository->findById(
@@ -38,13 +41,11 @@ class UpdateUser
 
         $user->updateWith($command->firstName, $command->lastName);
 
-        // Udpate Password
         if ($command->password) {
             $updated_password = UserPassword::create($command->password);
             $user->updatePassword($updated_password);
         }
 
-        // Update Email
         if ($command->email) {
             $email_address = new EmailAddress($command->email);
             $user->updateEmail($email_address);
@@ -54,7 +55,7 @@ class UpdateUser
     }
 
     /**
-    * Returns an UpdateUserCommand prefilled with data from
+    * Returns an UpdateUserCommand prefilled with data for
     * an existing user.
     *
     * @param  string $user_id

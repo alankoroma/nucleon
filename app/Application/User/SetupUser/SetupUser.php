@@ -3,10 +3,10 @@
 namespace App\Application\User\SetupUser;
 
 use App\Domain\EmailAddress;
-use App\Domain\Users\User;
-use App\Domain\Users\UserId;
-use App\Domain\Users\UserPassword;
-use App\Domain\Users\UserRepository;
+use App\Domain\User\User;
+use App\Domain\User\UserId;
+use App\Domain\User\UserPassword;
+use App\Domain\User\UserRepository;
 use App\Application\DoesNotExistException;
 use DateTime;
 
@@ -18,8 +18,7 @@ class SetupUser
     private $userRepository;
 
     /**
-     * Creates a new service.
-     *
+     * SetupUser Constructor.
      * @param UserRepository $repository
      */
     function __construct(UserRepository $repository)
@@ -86,7 +85,7 @@ class SetupUser
            $command->lastLogin = null;
        } else {
            $date = new DateTime($user->lastLogIn());
-           $logout_date = $date->format('l jS F Y \a\t H:i');
+           $logout_date = $date->format('Y-m-d H:i:s');
            $command->lastLogin = $logout_date;
        }
 
