@@ -7,6 +7,13 @@ require(dirname(__FILE__) . '/vendor/autoload.php');
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
+// Site url
+define('SITE_PATH', getenv('SITE_PATH'));
+
+// Global Variables
+$GLOBALS['SITE_PATH'] = SITE_PATH;
+$GLOBALS['USER_ID'] = '';
+
 /* Debug Mode */
 if (getenv('DEBUG_MODE') == 'true') {
     define('DEBUG_MODE', true);

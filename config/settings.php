@@ -6,5 +6,8 @@ return array(
     'db_attributes' => array(
         'driver' => DB_DRIVER,
         'filename' => __DIR__ . '/../db/test_nucleon.sqlite'
+    ),
+    'globals' => array(
+        'site_url' => $GLOBALS['SITE_PATH']
     )
 );

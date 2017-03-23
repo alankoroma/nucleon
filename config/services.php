@@ -14,7 +14,19 @@ return [
 
     /* Core */
     'view' => function($c) {
-        return new Slim\Views\PhpRenderer($c['settings']['views']);
+
+        $view = new Slim\Views\Twig(
+            $c['settings']['views']
+        );
+
+        // Instantiate and add Slim specific extension
+        $basePath = rtrim(str_ireplace('index.php', '', $c['request']->getUri()->getBasePath()), '/');
+        $view->addExtension(new Slim\Views\TwigExtension($c['router'], $basePath));
+
+        // Load Global Variables
+        $view->getEnvironment()->addGlobal('GLOBALS', $c['settings']['globals']);
+
+        return $view;
     },
     'db' => function($c) {
 
