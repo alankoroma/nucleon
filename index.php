@@ -18,5 +18,9 @@ $app = App\AppFactory::create(
     require(__DIR__ . '/config/routes.php')
 );
 
+/* Register middleware */
+$app->add($app->getContainer()['auth_middleware']);
+$app->add($app->getContainer()['session_middleware']);
+
 /* Handle the request */
 $app->run();

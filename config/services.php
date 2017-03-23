@@ -3,6 +3,7 @@
 use App\Application;
 use App\Controller;
 use App\Infrastructure;
+use App\Infrastructure\Database\DatabaseDriver;
 
 return [
 
@@ -23,6 +24,7 @@ return [
         if (DB_DRIVER == 'sqlite') {
 
             $db_driver->settings($c['settings']['db_attributes']);
+            return $db_driver;
 
         } else if (DB_DRIVER == 'mysql') {
 
@@ -34,8 +36,29 @@ return [
             );
 
             $db_driver->settings($db_settings);
+            return $db_driver;
         }
 
+    },
+    /* Session */
+    'session' => function($c) {
+        return new App\Session\Session();
+    },
+    'session_storage' => function($c) {
+        return new App\Infrastructure\Session\DbSessionStorage($c['db']);
+    },
+    'session_middleware' => function($c) {
+        return new App\Middleware\UserSession(
+            $c['session'],
+            $c['session_storage'],
+            'session_id'
+        );
+    },
+    'auth_middleware' => function($c) {
+        return new App\Middleware\Auth(
+            $c['session'],
+            $c['setup_user']
+        );
     },
     'controller_factory' => function($c) {
         return new App\ControllerFactory(function($controller) use ($c) {

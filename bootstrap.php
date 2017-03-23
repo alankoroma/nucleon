@@ -48,7 +48,9 @@ if (DB_DRIVER == 'mysql') {
 if (DEBUG_MODE) {
 
   $container_config = array_merge(
-      require(__DIR__  . '/config/services.php')
+      require(__DIR__  . '/config/services.php'),
+      require(__DIR__  . '/config/Application/Auth.php'),
+      require(__DIR__  . '/config/Application/User.php')
   );
 
   unset($container_config['notFoundHandler']);
@@ -57,6 +59,10 @@ if (DEBUG_MODE) {
 } else {
 
     $container_config = array_merge(
-        require(__DIR__  . '/config/services.php')
+        require(__DIR__  . '/config/services.php'),
+        require(__DIR__  . '/config/Application/Auth.php'),
+        require(__DIR__  . '/config/Application/User.php')
     );
 }
+
+$container = new \Slim\Container($container_config);
