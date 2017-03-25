@@ -80,7 +80,8 @@
                 {% if user is defined %}
                     <p class="pull-left"><strong>Welcome:</strong> {{user.firstName}} {{user.lastName}}</p>
                     {% if user.lastLogin is not null  %}
-                        <p class="pull-right"><strong>Last Seen:</strong> {{user.lastLogin}}</p>
+                        {% set dateTime = date(user.lastLogin) %}
+                        <p class="pull-right"><strong>Last Seen:</strong> {{ dateTime | date('d F Y') }}</p>
                     {% endif %}
                 {% endif %}
             </div>
