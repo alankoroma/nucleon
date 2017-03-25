@@ -13,6 +13,7 @@ composer install
 Create a new database called `nucleon` and a test database called `test_nucleon`
 
 Configure `.env` with System settings. An Example `.env.example` has been provided.
+Database driver can be either `sqlite` or `mysql`.
 Update `phinx.yml` with database settings
 
 Run all migrations (check phinx.yml for more migration environments)
