@@ -14,10 +14,9 @@ class SQLiteDatabase implements DatabaseInterface
     protected $db;
 
     /**
-    * Construct a new data access abstraction layer
-    *
-    * @param MySQLDriver $db_driver
-    */
+     * Constructor
+     * @param Database $db
+     */
     function __construct(Database $db)
     {
         $this->db = $db;
