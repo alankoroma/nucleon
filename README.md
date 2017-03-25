@@ -12,7 +12,7 @@ Install dependencies with Composer
 composer install
 ``
 
-Configure `.env` with System settings. An Example `.env.example` has been provided.
+Create a `.env` file and configure with System settings. An Example `.env.example` has been provided.
 Database driver can be either `sqlite` or `mysql`.
 Update `phinx.yml` with database settings
 
