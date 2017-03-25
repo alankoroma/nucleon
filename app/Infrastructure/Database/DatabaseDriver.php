@@ -12,7 +12,7 @@ class DatabaseDriver
     /**
      * @var string
      */
-    public $dbDriver;
+    protected $dbDriver;
 
     /**
      * @var array

@@ -7,6 +7,13 @@ require(dirname(__FILE__) . '/vendor/autoload.php');
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
+if (DEBUG_MODE || empty($dotenv->load())) {
+  error_reporting(-1);
+  ini_set('display_errors', 'On');
+}
+
+$dotenv->required('SITE_PATH');
+
 // Site url
 define('SITE_PATH', getenv('SITE_PATH'));
 
@@ -19,11 +26,6 @@ if (getenv('DEBUG_MODE') == 'true') {
     define('DEBUG_MODE', true);
 } else {
     define('DEBUG_MODE', false);
-}
-
-if (DEBUG_MODE) {
-  error_reporting(-1);
-  ini_set('display_errors', 'On');
 }
 
 /* Timezone */
