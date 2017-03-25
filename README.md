@@ -4,6 +4,8 @@ A Simple light-weight Framework based on the Hexagonal Architecture with PHP Uni
 
 ## Installation
 
+run `cd nucleon`
+
 Install dependencies with Composer
 
 ``
