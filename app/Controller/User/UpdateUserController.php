@@ -82,6 +82,8 @@ class UpdateUserController extends WebController
 
             $body = $this->request->getParsedBody();
 
+            $id = $this->segments['id'];
+
             if (!$this->form->validate($body)) {
                 throw new \Exception();
             }
@@ -89,6 +91,7 @@ class UpdateUserController extends WebController
             $this->form->setCommandClass(UpdateUserCommand::class);
             $command = $this->form->getTransfer();
 
+            $command->id = $id;
             $this->updateUser->execute($command);
 
             return $this
@@ -98,11 +101,8 @@ class UpdateUserController extends WebController
 
         } catch (DoesNotExistException $e) {
 
-            $email = $command->email;
-
             return $this->render('user/update.html.twig',
                 array(
-                    'email' => $email,
                     'form' => $this->form,
                     'error' => 'User Does Not Exists'
                 )

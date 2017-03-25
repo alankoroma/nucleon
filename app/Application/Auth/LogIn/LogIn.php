@@ -3,7 +3,6 @@
 namespace App\Application\Auth\LogIn;
 
 use App\Domain\EmailAddress;
-use App\Domain\User\User;
 use App\Domain\User\UserRepository;
 use App\Session\Session;
 

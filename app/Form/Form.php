@@ -4,7 +4,6 @@ namespace App\Form;
 
 abstract class Form
 {
-
     use FieldValidationTrait;
 
     /**
