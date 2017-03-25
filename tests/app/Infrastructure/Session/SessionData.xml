@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<dataset>
+    <table name="sessions">
+        <column>id</column>
+        <column>data</column>
+        <row>
+            <value>1cfa9b04-d293-11e6-9818-5217803caeb1</value>
+            <value>s:9:"some data";</value>
+        </row>
+        <row>
+            <value>24f12fda-d293-11e6-9818-5217803caeb1</value>
+            <value></value>
+        </row>
+        <row>
+            <value>30bdbc66-d293-11e6-9818-5217803caeb1</value>
+            <value></value>
+        </row>
+        <row>
+            <value>3c2dc35c-d293-11e6-9818-5217803caeb1</value>
+            <value></value>
+        </row>
+    </table>
+</dataset>

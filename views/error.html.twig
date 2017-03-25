@@ -1,0 +1,11 @@
+{% extends 'layout/main.html.twig' %}
+
+{% block title %}Nucleon Framwork &bull; {{ error_name }}{% endblock %}
+
+
+{% block content %}
+    <div class="jumbotron">
+        <div class="panel-heading"><h1>{{ error_name }}</h1></div>
+		<div class="panel-body"><p>{{ error_message }}</p></div>
+    </div>
+{% endblock %}

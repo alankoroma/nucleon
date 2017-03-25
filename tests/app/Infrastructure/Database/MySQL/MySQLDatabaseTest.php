@@ -14,7 +14,7 @@ class MySQLDatabaseTest extends \Database_TestCase
 
     public function setUp()
     {
-        $this->db = self::$db;
+        $this->db = self::$db->getDatabase();
         $this::cleanUp('authors');
         parent::setUp();
     }
@@ -113,7 +113,7 @@ class MySQLDatabaseTest extends \Database_TestCase
             "Pre-Condition"
         );
 
-        $query = 'TRUNCATE authors';
+        $query = 'DELETE FROM authors';
         $this->db->query($query);
 
         $this->assertEquals(0,

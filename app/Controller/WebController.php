@@ -2,12 +2,12 @@
 
 namespace App\Controller;
 
-use Slim\Views\PhpRenderer;
+use Slim\Views\Twig;
 
 class WebController extends BaseController
 {
     /**
-     * @var PhpRenderer
+     * @var Twig
      */
     private $view;
 
@@ -52,10 +52,10 @@ class WebController extends BaseController
     /**
      * Sets the controller's view renderer.
      *
-     * @param  PhpRenderer $view
+     * @param  Twig $view
      * @return null
      */
-    public function setView(PhpRenderer $view)
+    public function setView(Twig $view)
     {
         $this->view = $view;
     }
