@@ -10,7 +10,7 @@ Install dependencies with Composer
 composer install
 ``
 
-Create a new database called `nucleon`
+Create a new database called `nucleon` and a test database called `test_nucleon`
 
 Configure `.env` with System settings. An Example `.env.example` has been provided.
 Update `phinx.yml` with database settings
