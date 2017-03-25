@@ -17,9 +17,11 @@ Run all migrations (check phinx.yml for more migration environments)
 ``
 vendor/bin/phinx migrate
 ``
+
 or 
 
 ``
 vendor/bin/phinx migrate -e production_sqlite
 ``
+
 to specify an environment
