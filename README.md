@@ -24,7 +24,7 @@ Run all migrations (check phinx.yml for more migration environments)
 vendor/bin/phinx migrate
 ``
 
-or 
+or (SQLite)
 
 ``
 vendor/bin/phinx migrate -e production_sqlite
