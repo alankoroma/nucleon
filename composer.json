@@ -2,6 +2,7 @@
     "name": "alankoroma/nucleon",
     "version": "1.0.0",
     "license": "MIT",
+    "description": "A Simple light-weight Framework based on the Hexagonal Architecture",
     "type": "project",
     "require": {
         "slim/slim": "^3.5",
