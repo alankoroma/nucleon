@@ -1,10 +1,8 @@
 # Nucleon
 
-A Simple light-weight Framework based on the Hexagonal Architecture with PHP Unit Test, PHP Unit Database Test, Mailing, Database Migration, View Templating and Authentication.
+A Simple light-weight Framework based on the Hexagonal Architecture with PHP Unit Test, PHP Unit Database Test, Database Migration, View Templating and Authentication.
 
 ## Installation
-
-run `cd nucleon`
 
 Install dependencies with Composer
 
