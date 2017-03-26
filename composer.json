@@ -1,5 +1,7 @@
 {
     "name": "alankoroma/nucleon",
+    "version": "1.0.0",
+    "license": "MIT",
     "type": "project",
     "require": {
         "slim/slim": "^3.5",
